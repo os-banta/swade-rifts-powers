@@ -401,7 +401,14 @@
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 	
- 
+.drawer-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.25);
+    z-index: 200;
+  }
+  .drawer-overlay.open { display: block; }
+
   #mobile-filter-btn {
     display: none;
     align-items: center; gap: 8px;
@@ -416,10 +423,18 @@
 
   .drawer-close {
     display: none;
-    position: absolute; top: 12px; right: 14px;
-    background: none; border: none;
-    color: var(--accent); font-size: 22px;
-    cursor: pointer; line-height: 1;
+    position: fixed;
+    top: 12px;
+    left: 320px;
+    width: 32px; height: 32px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--rift); /* var(--accent) for powers */
+    font-size: 16px;
+    cursor: pointer;
+    line-height: 1;
+    z-index: 401;
   }
 
   @media (max-width: 768px) {
@@ -435,9 +450,13 @@
       transition: left 0.25s ease;
       background: var(--bg2, #3a4048);
     }
+	
     .sidebar.drawer-open { left: 0 !important; }
-    .sidebar-inner { padding-top: 56px; }
-    .drawer-close { display: block; }
+    .sidebar-body {
+      max-height: calc(100dvh - 48px);
+      padding-bottom: 0;
+    }
+    .drawer-close { display: none; }
     .page-wrap {
       flex-direction: column !important;
       padding: 0 12px 40px !important;
@@ -1976,6 +1995,10 @@ renderSidebar();
   const sidebar = document.querySelector('.sidebar');
   if (!sidebar) return;
 
+  const overlay = document.createElement('div');
+  overlay.className = 'drawer-overlay';
+  document.body.appendChild(overlay);
+
   const closeBtn = document.createElement('button');
   closeBtn.className = 'drawer-close';
   closeBtn.innerHTML = '✕';
@@ -1989,15 +2012,21 @@ renderSidebar();
 
   function openDrawer() {
     sidebar.classList.add('drawer-open');
+    closeBtn.style.display = 'block';
     document.body.style.overflow = 'hidden';
+    // auto-close warning banner
+    const banner = document.querySelector('.disclaimer-banner');
+    if (banner) banner.style.display = 'none';
   }
   function closeDrawer() {
     sidebar.classList.remove('drawer-open');
+    closeBtn.style.display = 'none';
     document.body.style.overflow = '';
   }
 
   filterBtn.addEventListener('click', openDrawer);
   closeBtn.addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', closeDrawer);
 })();
 </script>
 </body>
