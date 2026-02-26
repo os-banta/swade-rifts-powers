@@ -400,6 +400,74 @@
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+	
+.drawer-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 200;
+  }
+  .drawer-overlay.open { display: block; }
+
+  #mobile-filter-btn {
+    display: none;
+    align-items: center; gap: 8px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Cinzel', serif;
+    font-size: 12px; letter-spacing: 1px;
+    padding: 8px 14px; border-radius: 4px;
+    cursor: pointer; flex-shrink: 0;
+  }
+
+  .drawer-close {
+    display: none;
+    position: absolute; top: 12px; right: 14px;
+    background: none; border: none;
+    color: var(--accent); font-size: 22px;
+    cursor: pointer; line-height: 1;
+  }
+
+  @media (max-width: 768px) {
+    #mobile-filter-btn { display: flex; }
+    .sidebar {
+      position: fixed !important;
+      top: 0; left: -110% !important;
+      width: 80% !important; max-width: 320px;
+      height: 100dvh;
+      z-index: 300;
+      padding-top: 0 !important;
+      overflow-y: auto;
+      transition: left 0.25s ease;
+      background: var(--bg2, #3a4048);
+    }
+    .sidebar.drawer-open { left: 0 !important; }
+    .sidebar-inner { padding-top: 56px; }
+    .drawer-close { display: block; }
+    .page-wrap {
+      flex-direction: column !important;
+      padding: 0 12px 40px !important;
+      gap: 0 !important;
+    }
+    .controls {
+      flex-direction: column !important;
+      gap: 8px !important;
+    }
+    .controls select { width: 100% !important; }
+    .search-wrap { width: 100% !important; }
+    th:not(:first-child),
+    td:not(:first-child) { display: none !important; }
+    th:first-child, td:first-child {
+      width: 100% !important;
+      padding: 10px 12px !important;
+    }
+    .detail-row td { padding: 12px !important; }
+    .detail-stats { flex-direction: column !important; gap: 6px !important; }
+    h1 { font-size: 22px !important; }
+    .subtitle { font-size: 12px !important; }
+  }
+	
 </style>
 </head>
 <body>
@@ -1910,6 +1978,41 @@ document.querySelectorAll('th[data-col]').forEach(th => {
 
 render();
 renderSidebar();
+	
+	(function() {
+  const sidebar = document.querySelector('.sidebar');
+  if (!sidebar) return;
+
+  const overlay = document.createElement('div');
+  overlay.className = 'drawer-overlay';
+  document.body.appendChild(overlay);
+
+  const closeBtn = document.createElement('button');
+  closeBtn.className = 'drawer-close';
+  closeBtn.innerHTML = '✕';
+  sidebar.insertBefore(closeBtn, sidebar.firstChild);
+
+  const filterBtn = document.createElement('button');
+  filterBtn.id = 'mobile-filter-btn';
+  filterBtn.innerHTML = '&#9776; Filters';
+  const controls = document.querySelector('.controls');
+  if (controls) controls.insertBefore(filterBtn, controls.firstChild);
+
+  function openDrawer() {
+    sidebar.classList.add('drawer-open');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDrawer() {
+    sidebar.classList.remove('drawer-open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  filterBtn.addEventListener('click', openDrawer);
+  closeBtn.addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', closeDrawer);
+})();
 </script>
 </body>
 </html>
