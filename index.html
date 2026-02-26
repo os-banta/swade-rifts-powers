@@ -259,7 +259,7 @@
   tbody tr.expanded { background: var(--hover); }
 
   td { padding: 12px 16px; font-size: 15px; vertical-align: middle; }
-  td.name { font-weight: 600; }
+  /* td.name moved to pin section */
   td.name .has-desc { color: var(--gold); }
 
   .rank-badge {
@@ -480,6 +480,23 @@
     .subtitle { font-size: 12px !important; }
   }
 	
+
+  /* ── Pinned / Starred powers ─────────────────────────────── */
+  .pin-btn {
+    background: none; border: none; cursor: pointer;
+    font-size: 16px; color: var(--muted, #7a7570);
+    padding: 0 6px 0 0; line-height: 1;
+    transition: color 0.15s, transform 0.15s;
+    flex-shrink: 0;
+  }
+  .pin-btn:hover { color: #f0c040; transform: scale(1.2); }
+  .pin-btn.pinned { color: #f0c040; }
+  td.name { font-weight: 600; display: flex; align-items: center; gap: 2px; }
+  tbody tr.pinned-row {
+    background: rgba(240, 192, 64, 0.08) !important;
+    border-left: 3px solid #f0c040;
+  }
+  tbody tr.pinned-row:hover { background: rgba(240, 192, 64, 0.14) !important; }
 </style>
 </head>
 <body>
@@ -1902,8 +1919,10 @@ function getFiltered() {
   );
 }
 
+const pinned = new Set();
+
 function render() {
-  const filtered = [...getFiltered()].sort((a, b) => {
+  const sorted = [...getFiltered()].sort((a, b) => {
     if (sortCol === 'rank') {
       const av = rankOrder[a.rank] || 99, bv = rankOrder[b.rank] || 99;
       return sortAsc ? av - bv : bv - av;
@@ -1922,26 +1941,42 @@ function render() {
     th.querySelector('.sort-arrow').textContent = col === sortCol ? (sortAsc ? '↑' : '↓') : '↕';
   });
 
-  document.getElementById('count').textContent = `${filtered.length} power${filtered.length !== 1 ? 's' : ''}`;
+  document.getElementById('count').textContent = `${sorted.length} power${sorted.length !== 1 ? 's' : ''}`;
 
   const tbody = document.getElementById('tableBody');
   expandedRow = null;
 
-  if (!filtered.length) {
+  if (!sorted.length) {
     tbody.innerHTML = '<tr><td colspan="5" class="state-msg">No powers match your search.</td></tr>';
     return;
   }
 
+  const pinnedData = sorted.filter(p => pinned.has(p.name));
+  const unpinned   = sorted.filter(p => !pinned.has(p.name));
+  const ordered    = [...pinnedData, ...unpinned];
+
   tbody.innerHTML = '';
-  filtered.forEach(p => {
+  ordered.forEach(p => {
+    const isPinned = pinned.has(p.name);
     const tr = document.createElement('tr');
+    if (isPinned) tr.classList.add('pinned-row');
     tr.innerHTML = `
-      <td class="name"><span class="${p.description.trim() ? 'has-desc' : ''}">${p.name}</span></td>
+      <td class="name">
+        <button class="pin-btn ${isPinned ? 'pinned' : ''}" data-name="${p.name}" title="Pin to top">★</button>
+        <span class="${p.description.trim() ? 'has-desc' : ''}">${p.name}</span>
+      </td>
       <td>${p.cost}</td>
       <td><span class="rank-badge rank-${p.rank}">${p.rank}</span></td>
       <td>${p.range}</td>
       <td>${p.duration}</td>
     `;
+    tr.querySelector('.pin-btn').addEventListener('click', ev => {
+      ev.stopPropagation();
+      const name = ev.currentTarget.dataset.name;
+      if (pinned.has(name)) pinned.delete(name);
+      else pinned.add(name);
+      render();
+    });
     tr.addEventListener('click', () => toggleDetail(tr, p));
     tbody.appendChild(tr);
   });
