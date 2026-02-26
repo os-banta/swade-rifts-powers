@@ -401,14 +401,7 @@
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 	
-.drawer-overlay {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.25);
-    z-index: 200;
-  }
-  .drawer-overlay.open { display: block; }
-
+ 
   #mobile-filter-btn {
     display: none;
     align-items: center; gap: 8px;
@@ -1983,10 +1976,6 @@ renderSidebar();
   const sidebar = document.querySelector('.sidebar');
   if (!sidebar) return;
 
-  const overlay = document.createElement('div');
-  overlay.className = 'drawer-overlay';
-  document.body.appendChild(overlay);
-
   const closeBtn = document.createElement('button');
   closeBtn.className = 'drawer-close';
   closeBtn.innerHTML = '✕';
@@ -2000,18 +1989,15 @@ renderSidebar();
 
   function openDrawer() {
     sidebar.classList.add('drawer-open');
-    overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
   function closeDrawer() {
     sidebar.classList.remove('drawer-open');
-    overlay.classList.remove('open');
     document.body.style.overflow = '';
   }
 
   filterBtn.addEventListener('click', openDrawer);
   closeBtn.addEventListener('click', closeDrawer);
-  overlay.addEventListener('click', closeDrawer);
 })();
 </script>
 </body>
