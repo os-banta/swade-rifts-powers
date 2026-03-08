@@ -497,6 +497,288 @@
     border-left: 3px solid #f0c040;
   }
   tbody tr.pinned-row:hover { background: rgba(240, 192, 64, 0.14) !important; }
+
+  /* ── Tabs ───────────────────────────────────────────────── */
+  .tab-bar {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 12px;
+  }
+  .tab-btn {
+    padding: 7px 18px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px 6px 0 0;
+    color: var(--muted);
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active {
+    background: var(--surface);
+    color: var(--accent);
+    border-bottom-color: var(--surface);
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── Tattoo table ────────────────────────────────────────── */
+  .tattoo-category-row td {
+    background: var(--surface) !important;
+    color: var(--accent);
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-align: center;
+    padding: 6px 12px !important;
+    border-top: 1px solid var(--border);
+  }
+  .tattoo-name { font-weight: 600; color: var(--text); }
+  .tattoo-desc { font-size: 13px; color: var(--muted); }
+  #tattooSearch { width: 100%; }
+  .ppe-badge {
+    display: inline-block;
+    background: #1a3a2a;
+    color: #4ec98a;
+    border: 1px solid #2a5a3a;
+    border-radius: 4px;
+    padding: 1px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    min-width: 28px;
+    text-align: center;
+  }
+  .strain-badge {
+    display: inline-block;
+    background: #3a1a1a;
+    color: #e06060;
+    border: 1px solid #5a2a2a;
+    border-radius: 4px;
+    padding: 1px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    min-width: 28px;
+    text-align: center;
+  }
+
+  /* ── Builds Tab ─────────────────────────────────────────── */
+  .builds-toolbar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    align-items: center;
+  }
+  .builds-toolbar input {
+    flex: 1;
+    padding: 8px 12px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 14px;
+  }
+  .build-action-btn {
+    padding: 8px 16px;
+    background: var(--accent, #1a7ab8);
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.15s;
+  }
+  .build-action-btn:hover { opacity: 0.85; }
+  .build-action-btn.danger {
+    background: #7a2020;
+  }
+  .build-action-btn.secondary {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+  .builds-empty {
+    color: var(--muted);
+    font-style: italic;
+    text-align: center;
+    padding: 40px 0;
+  }
+  .build-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .build-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+  }
+  .build-card-title {
+    flex: 1;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .build-card-title input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    color: var(--accent);
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    width: 200px;
+  }
+  .build-toggle { color: var(--muted); font-size: 12px; transition: transform 0.2s; }
+  .build-card.collapsed .build-toggle { transform: rotate(-90deg); }
+  .build-card.collapsed .build-card-body { display: none; }
+  .build-card-body { padding: 12px 14px; }
+  .build-section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    margin: 10px 0 6px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 4px;
+  }
+  .build-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 13px;
+  }
+  .build-item:last-child { border-bottom: none; }
+  .build-item-name { color: var(--text); font-weight: 600; min-width: 140px; }
+  .build-item-desc { color: var(--muted); font-size: 12px; flex: 1; }
+  .build-item-remove {
+    background: none; border: none; color: var(--muted);
+    cursor: pointer; font-size: 14px; padding: 0 4px;
+    flex-shrink: 0; transition: color 0.15s;
+  }
+  .build-item-remove:hover { color: #e06060; }
+  .build-empty-note { color: var(--muted); font-style: italic; font-size: 13px; }
+
+  /* Add-to-build button on power/tattoo rows */
+  .add-to-build-btn {
+    background: none; border: none; cursor: pointer;
+    font-size: 13px; color: var(--muted2, #8898a8);
+    padding: 0 4px 0 0; line-height: 1;
+    transition: color 0.15s;
+    flex-shrink: 0;
+  }
+  .add-to-build-btn:hover { color: var(--accent); }
+
+  /* Build picker dropdown */
+  .build-picker-overlay {
+    position: fixed; inset: 0; z-index: 500;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.5);
+  }
+  .build-picker-modal {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    min-width: 260px;
+    max-width: 90vw;
+  }
+  .build-picker-title {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .build-picker-list { display: flex; flex-direction: column; gap: 6px; }
+  .build-picker-item {
+    padding: 8px 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    cursor: pointer;
+    font-size: 13px;
+    text-align: left;
+    transition: background 0.15s;
+  }
+  .build-picker-item:hover { background: var(--surface2, #4a5058); }
+  .build-picker-cancel {
+    margin-top: 10px;
+    width: 100%;
+    padding: 7px;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 13px;
+  }
+
+  /* ── Build card full detail entries ─────────────────────── */
+  .build-entry {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+  .build-entry-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: var(--surface2, #3a4048);
+    cursor: pointer;
+    user-select: none;
+  }
+  .build-entry-header:hover { background: var(--surface); }
+  .build-entry-name {
+    flex: 1;
+    font-weight: 600;
+    color: var(--text);
+    font-size: 14px;
+  }
+  .build-entry-meta {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.5px;
+  }
+  .build-entry-toggle { color: var(--muted); font-size: 11px; transition: transform 0.2s; }
+  .build-entry.collapsed .build-entry-toggle { transform: rotate(-90deg); }
+  .build-entry.collapsed .build-entry-body { display: none; }
+  .build-entry-body {
+    padding: 12px 14px;
+    border-top: 1px solid var(--border);
+    background: var(--panel);
+  }
+  .build-entry-remove {
+    background: none; border: none; color: var(--muted);
+    cursor: pointer; font-size: 14px; padding: 0 2px;
+    transition: color 0.15s; flex-shrink: 0;
+  }
+  .build-entry-remove:hover { color: #e06060; }
+  .build-entry-stats {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px;
+  }
 </style>
 </head>
 <body>
@@ -524,6 +806,15 @@
     <p>Click any row to expand full description</p>
   </header>
 
+  <!-- Tab Bar -->
+  <div class="tab-bar">
+    <button class="tab-btn active" data-tab="powers">Powers</button>
+    <button class="tab-btn" data-tab="tattoos">Magical Tattoos</button>
+    <button class="tab-btn" data-tab="builds">Builds</button>
+  </div>
+
+  <!-- Powers Panel -->
+  <div class="tab-panel active" id="tab-powers">
   <div class="controls">
     <div class="search-wrap">
       <input type="text" id="search" placeholder="Search powers...">
@@ -553,6 +844,48 @@
       <tbody id="tableBody"></tbody>
     </table>
   </div>
+  </div><!-- /tab-panel powers -->
+
+  <!-- Tattoos Panel -->
+  <div class="tab-panel" id="tab-tattoos">
+    <div class="controls">
+      <div class="search-wrap">
+        <input type="text" id="tattooSearch" placeholder="Search tattoos...">
+      </div>
+      <select id="tattooFilter">
+        <option value="">All Types</option>
+        <option value="Weapon">Weapon Tattoos</option>
+        <option value="Summoning">Summoning Tattoos</option>
+        <option value="Power">Power Tattoos</option>
+      </select>
+      <span class="count" id="tattooCount"></span>
+    </div>
+    <div class="table-wrap">
+      <table id="tattooTable">
+        <thead>
+          <tr>
+            <th>Tattoo</th>
+            <th>Description</th>
+            <th>PPE</th>
+            <th>Strain</th>
+          </tr>
+        </thead>
+        <tbody id="tattooBody"></tbody>
+      </table>
+    </div>
+  </div><!-- /tab-panel tattoos -->
+
+  <!-- Builds Panel -->
+  <div class="tab-panel" id="tab-builds">
+    <div class="builds-toolbar">
+      <input type="text" id="buildSearch" placeholder="Search builds..." />
+      <button id="createBuildBtn" class="build-action-btn">+ New Build</button>
+    </div>
+    <div id="buildsContainer">
+      <p class="builds-empty" id="buildsEmpty">No builds yet. Create one above.</p>
+    </div>
+  </div><!-- /tab-panel builds -->
+
 </div><!-- app -->
 </div><!-- page-wrap -->
 
@@ -1903,6 +2236,51 @@ const POWERS = [
 
 ];
 
+
+// =============================================================
+//  MAGICAL TATTOOS DATA
+// =============================================================
+const TATTOOS = [
+
+  // ── WEAPON TATTOOS ─────────────────────────────────────────
+  { category: "Weapon", name: "Simple Melee",         desc: "Conjure a Medieval Melee Weapon (see Savage Worlds).",                                                                ppe: "1",      strain: "1" },
+  { category: "Weapon", name: "Simple Ranged",         desc: "Conjure a Medieval Ranged Weapon with 6 Shots.",                                                                     ppe: "1",      strain: "1" },
+  { category: "Weapon", name: "Shield",                desc: "Conjure an Ancient or Medieval Shield of any type.",                                                                 ppe: "2",      strain: "1" },
+  { category: "Weapon", name: "Bloody Weapon",         desc: "As Simple Melee, but deals Str + damage dice ×2 MD, with AP equal to damage die type. E.g. a Bloody Flail deals Str + 2d6 MD, AP 6.", ppe: "3", strain: "1" },
+  { category: "Weapon", name: "Aura Weapon",           desc: "As a Bloody Weapon with Greater smite on it and a Trapping.",                                                        ppe: "6",      strain: "1" },
+  { category: "Weapon", name: "Serpent Weapon",        desc: "As a Bloody Weapon, +8 MD vs reptiles and dragons.",                                                                 ppe: "4",      strain: "1" },
+  { category: "Weapon", name: "Weapon Piercing a Skull", desc: "As a Bloody Weapon; each hit drains 1d4 PP from the target.",                                                     ppe: "5",      strain: "1" },
+  { category: "Weapon", name: "Winged Weapon",         desc: "Upgrades a weapon tattoo (together still a single tattoo). If thrown — or a missile shot — it can return to the wielder as a free action.", ppe: "+1", strain: "+0" },
+
+  // ── SUMMONING TATTOOS ──────────────────────────────────────
+  { category: "Summoning", name: "Animal",             desc: "Summon ally animal; PPE cost 1 + Size (minimum 1).",                                                                 ppe: "Varies", strain: "1" },
+  { category: "Summoning", name: "Monster",            desc: "Summon ally animalistic supernatural creature with animal intelligence. Costs 3 + Size in PPE (minimum 3) — subject to GM approval.", ppe: "Varies", strain: "2" },
+
+  // ── POWER TATTOOS ──────────────────────────────────────────
+  { category: "Power", name: "Beautiful Dancer",       desc: "Cast the puppet power with Mind Control.",                                                                           ppe: "6",      strain: "2" },
+  { category: "Power", name: "Black Sun",              desc: "Cast True invisibility (self); usable only in shadows or darkness.",                                                 ppe: "8",      strain: "2" },
+  { category: "Power", name: "Broken Chain",           desc: "Boost Strength (self) by two die types, three with a raise.",                                                        ppe: "3",      strain: "1" },
+  { category: "Power", name: "Chained Cloud",          desc: "Cast Greater havoc with Strong.",                                                                                    ppe: "5",      strain: "1" },
+  { category: "Power", name: "Chained Skull",          desc: "Cast Exalted arcane protection (self).",                                                                             ppe: "2",      strain: "1" },
+  { category: "Power", name: "Cracked Skull",          desc: "Cast Greater stun.",                                                                                                 ppe: "4",      strain: "2" },
+  { category: "Power", name: "Eye in a Pyramid",       desc: "Cast Exalted detect arcana (self).",                                                                                 ppe: "2",      strain: "1" },
+  { category: "Power", name: "Eye of Knowledge (Lidless)", desc: "Cast speak language (self).",                                                                                    ppe: "1",      strain: "1" },
+  { category: "Power", name: "Eye Pierced by Dagger",  desc: "Cast Greater blind.",                                                                                                ppe: "4",      strain: "2" },
+  { category: "Power", name: "Eye with Tears",         desc: "Cast empathy with Empathic Transmission.",                                                                           ppe: "3",      strain: "1" },
+  { category: "Power", name: "Eyes of the Wolf",       desc: "Cast Exalted darksight (self) plus Greater farsight (self).",                                                        ppe: "4",      strain: "1" },
+  { category: "Power", name: "Flaming Skull",          desc: "Cast Greater blast (fire Trapping); Small, Medium, or Large Blast Template.",                                        ppe: "5",      strain: "2" },
+  { category: "Power", name: "Heart, Staked",          desc: "Cast Exalted arcane protection (self); vs undead only, 1 hour duration.",                                            ppe: "1",      strain: "1" },
+  { category: "Power", name: "Heart in Flames",        desc: "Cast environmental protection (self) versus Heat and Fire.",                                                         ppe: "2",      strain: "1" },
+  { category: "Power", name: "Heart with Large Wings", desc: "Cast fly (self) with Swift Flight.",                                                                                 ppe: "7",      strain: "2" },
+  { category: "Power", name: "Heart with Tiny Wings",  desc: "Cast Greater speed (self) with Quickness.",                                                                          ppe: "5",      strain: "2" },
+  { category: "Power", name: "Holy Symbol",            desc: "Cast the banish power.",                                                                                             ppe: "3",      strain: "1" },
+  { category: "Power", name: "Lightning Bolts",        desc: "Cast Greater bolt (electricity Trapping) with Onslaught.",                                                           ppe: "5",      strain: "2" },
+  { category: "Power", name: "Rose with Blood",        desc: "Cast Greater healing with Neutralize Poison & Disease.",                                                             ppe: "10",     strain: "2" },
+  { category: "Power", name: "Shark or Dolphin",       desc: "Cast environmental protection (self, water) plus speed.",                                                            ppe: "2",      strain: "1" },
+  { category: "Power", name: "Skull with Bat Wings",   desc: "Cast zombie with Armed, Armor, and Skeletal modifiers.",                                                             ppe: "3",      strain: "1" },
+  { category: "Power", name: "Warrior in Full Armor",  desc: "Cast Greater protection (self) with Toughness.",                                                                     ppe: "4",      strain: "2" },
+
+];
 // =============================================================
 //  END OF DATA — do not edit below this line
 // =============================================================
@@ -1963,6 +2341,7 @@ function render() {
     tr.innerHTML = `
       <td class="name">
         <button class="pin-btn ${isPinned ? 'pinned' : ''}" data-name="${p.name}" title="Pin to top">★</button>
+        <button class="add-to-build-btn" data-type="powers" data-name="${p.name}" title="Add to build">⊕</button>
         <span class="${p.description.trim() ? 'has-desc' : ''}">${p.name}</span>
       </td>
       <td>${p.cost}</td>
@@ -1976,6 +2355,10 @@ function render() {
       if (pinned.has(name)) pinned.delete(name);
       else pinned.add(name);
       render();
+    });
+    tr.querySelector('.add-to-build-btn').addEventListener('click', ev => {
+      ev.stopPropagation();
+      openBuildPicker(ev.currentTarget.dataset.type, ev.currentTarget.dataset.name);
     });
     tr.addEventListener('click', () => toggleDetail(tr, p));
     tbody.appendChild(tr);
@@ -2063,6 +2446,453 @@ renderSidebar();
   closeBtn.addEventListener('click', closeDrawer);
   overlay.addEventListener('click', closeDrawer);
 })();
+
+// =============================================================
+//  TATTOO TAB LOGIC
+// =============================================================
+
+const tattoosPinned = new Set();
+
+function renderTattoos() {
+  const q      = document.getElementById('tattooSearch').value.toLowerCase();
+  const filter = document.getElementById('tattooFilter').value;
+
+  let data = TATTOOS.filter(t => {
+    if (filter && t.category !== filter) return false;
+    if (q && !`${t.name} ${t.desc} ${t.category}`.toLowerCase().includes(q)) return false;
+    return true;
+  });
+
+  document.getElementById('tattooCount').textContent =
+    `${data.length} tattoo${data.length !== 1 ? 's' : ''}`;
+
+  const tbody = document.getElementById('tattooBody');
+  tbody.innerHTML = '';
+
+  // Pinned first
+  const pinnedT   = data.filter(t => tattoosPinned.has(t.name));
+  const unpinnedT = data.filter(t => !tattoosPinned.has(t.name));
+  const ordered   = [...pinnedT, ...unpinnedT];
+
+  let lastCat = null;
+  ordered.forEach(t => {
+    // Category header row (skip if pinned items are mixed)
+    if (t.category !== lastCat && pinnedT.length === 0) {
+      lastCat = t.category;
+      const catRow = document.createElement('tr');
+      catRow.className = 'tattoo-category-row';
+      catRow.innerHTML = `<td colspan="4">${t.category.toUpperCase()} TATTOOS</td>`;
+      tbody.appendChild(catRow);
+    }
+
+    const isPinned = tattoosPinned.has(t.name);
+    const tr = document.createElement('tr');
+    if (isPinned) tr.classList.add('pinned-row');
+
+    tr.innerHTML = `
+      <td class="name" style="white-space:nowrap; min-width:160px;">
+        <button class="pin-btn ${isPinned ? 'pinned' : ''}" data-name="${t.name}" title="Pin to top">★</button>
+        <button class="add-to-build-btn" data-type="tattoos" data-name="${t.name}" title="Add to build">⊕</button>
+        <span class="tattoo-name">${t.name}</span>
+      </td>
+      <td class="tattoo-desc">${t.desc}</td>
+      <td style="text-align:center;"><span class="ppe-badge">${t.ppe}</span></td>
+      <td style="text-align:center;"><span class="strain-badge">${t.strain}</span></td>
+    `;
+
+    tr.querySelector('.pin-btn').addEventListener('click', ev => {
+      ev.stopPropagation();
+      const name = ev.currentTarget.dataset.name;
+      if (tattoosPinned.has(name)) tattoosPinned.delete(name);
+      else tattoosPinned.add(name);
+      renderTattoos();
+    });
+    tr.querySelector('.add-to-build-btn').addEventListener('click', ev => {
+      ev.stopPropagation();
+      openBuildPicker(ev.currentTarget.dataset.type, ev.currentTarget.dataset.name);
+    });
+
+    tbody.appendChild(tr);
+  });
+}
+
+// Tab switching
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(`tab-${btn.dataset.tab}`).classList.add('active');
+    if (btn.dataset.tab === 'tattoos') renderTattoos();
+  });
+});
+
+// Tattoo search/filter
+document.getElementById('tattooSearch').addEventListener('input', renderTattoos);
+document.getElementById('tattooFilter').addEventListener('change', renderTattoos);
+
+
+// =============================================================
+//  BUILDS TAB LOGIC (persistent via window.storage)
+// =============================================================
+
+let builds = {}; // { buildId: { name, powers: [], tattoos: [] } }
+
+async function loadBuilds() {
+  try {
+    const result = await window.storage.get('rifts-builds');
+    if (result && result.value) {
+      builds = JSON.parse(result.value);
+    }
+  } catch(e) {
+    builds = {};
+  }
+  renderBuilds();
+}
+
+async function saveBuilds() {
+  try {
+    await window.storage.set('rifts-builds', JSON.stringify(builds));
+  } catch(e) {
+    console.warn('Storage save failed:', e);
+  }
+}
+
+function makeBuildId() {
+  return 'build_' + Date.now() + '_' + Math.random().toString(36).slice(2,6);
+}
+
+function createBuild(name) {
+  if (!name.trim()) return;
+  const id = makeBuildId();
+  builds[id] = { name: name.trim(), powers: [], tattoos: [] };
+  saveBuilds();
+  renderBuilds();
+}
+
+function deleteBuild(id) {
+  const name = builds[id]?.name || 'this build';
+  const overlay = document.createElement('div');
+  overlay.className = 'build-picker-overlay';
+
+  const modal = document.createElement('div');
+  modal.className = 'build-picker-modal';
+  modal.innerHTML = `
+    <div class="build-picker-title">Delete "${name}"?</div>
+    <p style="color:var(--muted); font-size:13px; margin-bottom:14px;">This cannot be undone.</p>
+    <div style="display:flex; gap:8px;">
+      <button class="build-action-btn danger" id="confirmDeleteBtn" style="flex:1;">Delete</button>
+      <button class="build-picker-cancel" style="flex:1; margin-top:0;" id="cancelDeleteBtn">Cancel</button>
+    </div>
+  `;
+
+  modal.querySelector('#confirmDeleteBtn').addEventListener('click', () => {
+    delete builds[id];
+    saveBuilds();
+    renderBuilds();
+    overlay.remove();
+  });
+  modal.querySelector('#cancelDeleteBtn').addEventListener('click', () => overlay.remove());
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
+
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+}
+
+function openRenameBuildModal(id, currentName) {
+  const overlay = document.createElement('div');
+  overlay.className = 'build-picker-overlay';
+
+  const modal = document.createElement('div');
+  modal.className = 'build-picker-modal';
+  modal.innerHTML = `
+    <div class="build-picker-title">Rename build</div>
+    <input type="text" id="renameBuildField" value="${currentName}"
+      style="width:100%; padding:8px 10px; background:var(--surface); border:1px solid var(--border);
+             border-radius:6px; color:var(--text); font-size:14px; margin-bottom:10px; box-sizing:border-box;" />
+    <div style="display:flex; gap:8px;">
+      <button class="build-action-btn" id="confirmRenameBtn" style="flex:1;">Rename</button>
+      <button class="build-picker-cancel" style="flex:1; margin-top:0;" id="cancelRenameBtn">Cancel</button>
+    </div>
+  `;
+
+  const confirm = () => {
+    const val = modal.querySelector('#renameBuildField').value;
+    if (val.trim()) {
+      renameBuild(id, val.trim());
+      renderBuilds();
+      overlay.remove();
+    }
+  };
+
+  modal.querySelector('#confirmRenameBtn').addEventListener('click', confirm);
+  modal.querySelector('#cancelRenameBtn').addEventListener('click', () => overlay.remove());
+  modal.querySelector('#renameBuildField').addEventListener('keydown', e => {
+    if (e.key === 'Enter') confirm();
+    if (e.key === 'Escape') overlay.remove();
+  });
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
+
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+  setTimeout(() => {
+    const field = modal.querySelector('#renameBuildField');
+    field.focus();
+    field.select();
+  }, 50);
+}
+
+function renameBuild(id, newName) {
+  if (builds[id]) {
+    builds[id].name = newName;
+    saveBuilds();
+  }
+}
+
+function removeFromBuild(buildId, type, itemName) {
+  if (!builds[buildId]) return;
+  builds[buildId][type] = builds[buildId][type].filter(n => n !== itemName);
+  saveBuilds();
+  renderBuilds();
+}
+
+function addToBuild(buildId, type, itemName) {
+  if (!builds[buildId]) return;
+  if (!builds[buildId][type].includes(itemName)) {
+    builds[buildId][type].push(itemName);
+    saveBuilds();
+    renderBuilds();
+  }
+  closeBuildPicker();
+}
+
+// Build picker modal
+let pendingAdd = null;
+
+function openBuildPicker(type, itemName) {
+  const ids = Object.keys(builds);
+  if (ids.length === 0) {
+    const overlay = document.createElement('div');
+    overlay.className = 'build-picker-overlay';
+    const modal = document.createElement('div');
+    modal.className = 'build-picker-modal';
+    modal.innerHTML = `
+      <div class="build-picker-title">No builds yet</div>
+      <p style="color:var(--muted); font-size:16px; margin-bottom:20px; line-height:1.5;">Create a build first in the Builds tab.</p>
+      <button class="build-action-btn danger" style="width:100%;" id="noBuildOkBtn">Okay</button>
+    `;
+    modal.querySelector('#noBuildOkBtn').addEventListener('click', () => overlay.remove());
+    overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+    return;
+  }
+  pendingAdd = { type, itemName };
+
+  const overlay = document.createElement('div');
+  overlay.className = 'build-picker-overlay';
+  overlay.id = 'buildPickerOverlay';
+
+  const modal = document.createElement('div');
+  modal.className = 'build-picker-modal';
+  modal.innerHTML = `
+    <div class="build-picker-title">Add "${itemName}" to...</div>
+    <div class="build-picker-list">
+      ${ids.map(id => `<button class="build-picker-item" data-id="${id}">${builds[id].name}</button>`).join('')}
+    </div>
+    <button class="build-picker-cancel">Cancel</button>
+  `;
+
+  modal.querySelectorAll('.build-picker-item').forEach(btn => {
+    btn.addEventListener('click', () => {
+      addToBuild(btn.dataset.id, pendingAdd.type, pendingAdd.itemName);
+    });
+  });
+  modal.querySelector('.build-picker-cancel').addEventListener('click', closeBuildPicker);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeBuildPicker(); });
+
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+}
+
+function closeBuildPicker() {
+  const el = document.getElementById('buildPickerOverlay');
+  if (el) el.remove();
+  pendingAdd = null;
+}
+
+function renderBuilds() {
+  const container = document.getElementById('buildsContainer');
+  const ids = Object.keys(builds);
+
+  // Clear only build cards, not the empty message element
+  container.querySelectorAll('.build-card').forEach(c => c.remove());
+
+  const empty = document.getElementById('buildsEmpty');
+  if (ids.length === 0) {
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  ids.forEach(id => {
+    const build = builds[id];
+    const card = document.createElement('div');
+    card.className = 'build-card';
+    card.dataset.id = id;
+
+    // Resolve power objects
+    const powerObjs  = build.powers.map(n => POWERS.find(p => p.name === n)).filter(Boolean);
+    const tattooObjs = build.tattoos.map(n => TATTOOS.find(t => t.name === n)).filter(Boolean);
+
+    const powersHtml = powerObjs.length
+      ? powerObjs.map(p => `
+          <div class="build-entry" data-entry-id="${id}-powers-${p.name.replace(/[^a-z0-9]/gi,'_')}">
+            <div class="build-entry-header">
+              <span class="build-entry-toggle">▾</span>
+              <span class="build-entry-name">${p.name}</span>
+              <span class="build-entry-meta">${p.cost ? `${p.cost} PP` : ''} ${p.rank ? `· ${p.rank}` : ''}</span>
+              <button class="build-entry-remove" data-id="${id}" data-type="powers" data-name="${p.name}" title="Remove">✕</button>
+            </div>
+            <div class="build-entry-body">
+              <div class="build-entry-stats">
+                ${p.cost ? `<div class="stat-chip">Cost: <strong>${p.cost}</strong></div>` : ''}
+                ${p.rank ? `<div class="stat-chip">Rank: <strong>${p.rank}</strong></div>` : ''}
+                ${p.range ? `<div class="stat-chip">Range: <strong>${p.range}</strong></div>` : ''}
+                ${p.duration ? `<div class="stat-chip">Duration: <strong>${p.duration}</strong></div>` : ''}
+              </div>
+              <div class="detail-body">${p.description || '<em>No description.</em>'}</div>
+            </div>
+          </div>`).join('')
+      : '<p class="build-empty-note">No powers added yet.</p>';
+
+    const tattoosHtml = tattooObjs.length
+      ? tattooObjs.map(t => `
+          <div class="build-entry" data-entry-id="${id}-tattoos-${t.name.replace(/[^a-z0-9]/gi,'_')}">
+            <div class="build-entry-header">
+              <span class="build-entry-toggle">▾</span>
+              <span class="build-entry-name">${t.name}</span>
+              <span class="build-entry-meta">PPE: ${t.ppe} · Strain: ${t.strain}</span>
+              <button class="build-entry-remove" data-id="${id}" data-type="tattoos" data-name="${t.name}" title="Remove">✕</button>
+            </div>
+            <div class="build-entry-body">
+              <div class="build-entry-stats">
+                <span class="ppe-badge">PPE ${t.ppe}</span>
+                <span class="strain-badge">Strain ${t.strain}</span>
+              </div>
+              <p style="color:var(--text); font-size:13px; margin:0;">${t.desc}</p>
+            </div>
+          </div>`).join('')
+      : '<p class="build-empty-note">No tattoos added yet.</p>';
+
+    card.innerHTML = `
+      <div class="build-card-header">
+        <span class="build-toggle">▾</span>
+        <span class="build-card-title">${build.name}</span>
+        <button class="build-action-btn secondary" data-rename="${id}">Rename</button>
+        <button class="build-action-btn danger" data-delete="${id}">Delete</button>
+      </div>
+      <div class="build-card-body">
+        <div class="build-section-title">Powers (${powerObjs.length})</div>
+        ${powersHtml}
+        <div class="build-section-title" style="margin-top:14px;">Tattoos (${tattooObjs.length})</div>
+        ${tattoosHtml}
+      </div>
+    `;
+
+    // Collapse toggle
+    card.querySelector('.build-card-header').addEventListener('click', e => {
+      if (e.target.closest('button')) return;
+      card.classList.toggle('collapsed');
+    });
+
+    // Delete
+    card.querySelector(`[data-delete="${id}"]`).addEventListener('click', e => {
+      e.stopPropagation();
+      deleteBuild(id);
+    });
+
+    // Rename
+    card.querySelector(`[data-rename="${id}"]`).addEventListener('click', e => {
+      e.stopPropagation();
+      openRenameBuildModal(id, build.name);
+    });
+
+    // Remove items + collapse toggle for entries
+    card.querySelectorAll('.build-entry-remove').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        removeFromBuild(btn.dataset.id, btn.dataset.type, btn.dataset.name);
+      });
+    });
+    card.querySelectorAll('.build-entry-header').forEach(header => {
+      header.addEventListener('click', e => {
+        if (e.target.closest('.build-entry-remove')) return;
+        header.closest('.build-entry').classList.toggle('collapsed');
+      });
+    });
+
+    container.appendChild(card);
+  });
+}
+
+// Wire up create build button — popup prompt
+document.getElementById('createBuildBtn').addEventListener('click', () => {
+  openCreateBuildModal();
+});
+
+// Build search
+document.getElementById('buildSearch').addEventListener('input', e => {
+  const q = e.target.value.toLowerCase();
+  document.querySelectorAll('.build-card').forEach(card => {
+    const id = card.dataset.id;
+    const name = builds[id]?.name?.toLowerCase() || '';
+    card.style.display = name.includes(q) ? '' : 'none';
+  });
+});
+
+function openCreateBuildModal() {
+  const overlay = document.createElement('div');
+  overlay.className = 'build-picker-overlay';
+  overlay.id = 'createBuildOverlay';
+
+  const modal = document.createElement('div');
+  modal.className = 'build-picker-modal';
+  modal.innerHTML = `
+    <div class="build-picker-title">Name your build</div>
+    <input type="text" id="newBuildNameField" placeholder="e.g. Cyber Knight, Session 4..."
+      style="width:100%; padding:8px 10px; background:var(--surface); border:1px solid var(--border);
+             border-radius:6px; color:var(--text); font-size:14px; margin-bottom:10px; box-sizing:border-box;" />
+    <div style="display:flex; gap:8px;">
+      <button class="build-action-btn" id="confirmCreateBtn" style="flex:1;">Create</button>
+      <button class="build-picker-cancel" style="flex:1; margin-top:0;" id="cancelCreateBtn">Cancel</button>
+    </div>
+  `;
+
+  const confirm = () => {
+    const val = modal.querySelector('#newBuildNameField').value;
+    if (val.trim()) {
+      createBuild(val.trim());
+      overlay.remove();
+    }
+  };
+
+  modal.querySelector('#confirmCreateBtn').addEventListener('click', confirm);
+  modal.querySelector('#cancelCreateBtn').addEventListener('click', () => overlay.remove());
+  modal.querySelector('#newBuildNameField').addEventListener('keydown', e => {
+    if (e.key === 'Enter') confirm();
+    if (e.key === 'Escape') overlay.remove();
+  });
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
+
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+  setTimeout(() => modal.querySelector('#newBuildNameField').focus(), 50);
+}
+
+// Load builds on page load
+loadBuilds();
+
 </script>
 </body>
 </html>
